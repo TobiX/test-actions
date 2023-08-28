@@ -5,6 +5,9 @@ on:
   push:
   pull_request:
 
+env:
+  MAVEN_ARGS: '-ntp -Dstyle.color=always'
+
 jobs:
   build:
     runs-on: ubuntu-latest
