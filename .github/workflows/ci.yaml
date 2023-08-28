@@ -19,3 +19,5 @@ jobs:
           cache: maven
       - name: Build with Maven
         run: mvn -ntp -Dstyle.color=always verify
+      - name: Inspect magic
+        run: cat ~/.m2/settings.xml
