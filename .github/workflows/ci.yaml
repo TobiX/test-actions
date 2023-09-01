@@ -24,8 +24,8 @@ jobs:
         run: mvn -ntp -Dstyle.color=always verify
 
       - name: Cut Changelog
-        run: >
-          sed '1,\|## \['"${GITHUB_REF#refs/tags/}"'\]|d; /^## /,$d'
+        run: |
+          sed '1,\|## \['"${GITHUB_REF#refs/tags/}"'\]|d; /^## /,$d' \
             CHANGELOG.md > target/current-changelog.txt
 
       - name: Release
