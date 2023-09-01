@@ -45,4 +45,3 @@ culpa dicta esse. Enim ea molestiae est quibusdam esse.
 [Unreleased]: https://github.com/webcomics/dosage/compare/1.5...HEAD
 [1.5]: https://github.com/TobiX/test-actions/compare/1.4...1.5
 [1.4]: https://github.com/TobiX/test-actions/compare/1.3...1.4
-
