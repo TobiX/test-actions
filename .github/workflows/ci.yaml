@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - uses: actions/checkout@v3
@@ -17,5 +19,20 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
+
       - name: Build with Maven
         run: mvn -ntp -Dstyle.color=always verify
+
+      - name: Cut Changelog
+        run: >
+          sed '1,/## \['"${GITHUB_REF#refs/tags/}"'\]/d; /^## /,$d'
+            CHANGELOG.md > target/current-changelog.txt
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          body_path: target/current-changelog.txt
+          draft: true
+          files: |
+            target/*.jar
